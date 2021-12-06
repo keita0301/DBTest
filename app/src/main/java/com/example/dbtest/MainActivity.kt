@@ -71,54 +71,87 @@ class MainActivity : AppCompatActivity() {
 
         val cities = db.collection("cities")
 
-        val data1 = hashMapOf(
-            "name" to "San Francisco",
-            "state" to "CA",
-            "country" to "USA",
-            "capital" to false,
-            "population" to 860000,
-            "regions" to listOf("west_coast", "norcal")
-        )
-        cities.document("SF").set(data1)
+//        val data1 = hashMapOf(
+//            "name" to "San Francisco",
+//            "state" to "CA",
+//            "country" to "USA",
+//            "capital" to false,
+//            "population" to 860000,
+//            "regions" to listOf("west_coast", "norcal")
+//        )
+//        cities.document("SF").set(data1)
+//
+//        val data2 = hashMapOf(
+//            "name" to "Los Angeles",
+//            "state" to "CA",
+//            "country" to "USA",
+//            "capital" to false,
+//            "population" to 3900000,
+//            "regions" to listOf("west_coast", "socal")
+//        )
+//        cities.document("LA").set(data2)
+//
+//        val data3 = hashMapOf(
+//            "name" to "Washington D.C.",
+//            "state" to null,
+//            "country" to "USA",
+//            "capital" to true,
+//            "population" to 680000,
+//            "regions" to listOf("east_coast")
+//        )
+//        cities.document("DC").set(data3)
+//
+//        val data4 = hashMapOf(
+//            "name" to "Tokyo",
+//            "state" to null,
+//            "country" to "Japan",
+//            "capital" to true,
+//            "population" to 9000000,
+//            "regions" to listOf("kanto", "honshu")
+//        )
+//        cities.document("TOK").set(data4)
+//
+//        val data5 = hashMapOf(
+//            "name" to "Beijing",
+//            "state" to null,
+//            "country" to "China",
+//            "capital" to true,
+//            "population" to 21500000,
+//            "regions" to listOf("jingjinji", "hebei")
+//        )
+//        cities.document("BJ").set(data5)
+//
+//        val data6 = hashMapOf(
+//            "name" to "Chiba",
+//            "state" to null,
+//            "country" to "Tokyo",
+//            "capital" to false,
+//            "population" to 2150000,
+//            "regions" to listOf("kanto", "honshu")
+//        )
+//        cities.document("CB").set(data6)
 
-        val data2 = hashMapOf(
-            "name" to "Los Angeles",
-            "state" to "CA",
-            "country" to "USA",
-            "capital" to false,
-            "population" to 3900000,
-            "regions" to listOf("west_coast", "socal")
-        )
-        cities.document("LA").set(data2)
+        val docRef = db.collection("cities").document("SF")
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                    Tv.text = "${document.get("name")}"
+                } else {
+                    Log.d(TAG, "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "get failed with ", exception)
+            }
 
-        val data3 = hashMapOf(
-            "name" to "Washington D.C.",
-            "state" to null,
-            "country" to "USA",
-            "capital" to true,
-            "population" to 680000,
-            "regions" to listOf("east_coast")
-        )
-        cities.document("DC").set(data3)
-
-        val data4 = hashMapOf(
-            "name" to "Tokyo",
-            "state" to null,
-            "country" to "Japan",
-            "capital" to true,
-            "population" to 9000000,
-            "regions" to listOf("kanto", "honshu")
-        )
-        cities.document("TOK").set(data4)
-
-        val data5 = hashMapOf(
-            "name" to "Beijing",
-            "state" to null,
-            "country" to "China",
-            "capital" to true,
-            "population" to 21500000,
-            "regions" to listOf("jingjinji", "hebei")
-        )
-        cities.document("BJ").set(data5)
+//        // Create a reference to the cities collection
+//        val citiesRef = db.collection("cities")
+//
+//        // Create a query against the collection.
+//        val query = citiesRef.whereEqualTo("state", "CA")
+//        Tv.text = query.toString()
+//
+//        val capitalCities = db.collection("cities").whereEqualTo("capital", true)
     }
 }
