@@ -71,15 +71,15 @@ class MainActivity : AppCompatActivity() {
 
         val cities = db.collection("cities")
 
-//        val data1 = hashMapOf(
-//            "name" to "San Francisco",
-//            "state" to "CA",
-//            "country" to "USA",
-//            "capital" to false,
-//            "population" to 860000,
-//            "regions" to listOf("west_coast", "norcal")
-//        )
-//        cities.document("SF").set(data1)
+        val data1 = hashMapOf(
+            "name" to "San Francisco",
+            "state" to "CA",
+            "country" to "USA",
+            "capital" to false,
+            "population" to 860000,
+            "regions" to listOf("west_coast", "norcal")
+        )
+        cities.document("SF").set(data1)
 //
 //        val data2 = hashMapOf(
 //            "name" to "Los Angeles",
