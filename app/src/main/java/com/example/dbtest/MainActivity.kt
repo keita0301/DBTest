@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
 
+
         // Create a new user with a first and last name
 //        val user = hashMapOf(
 //            "first" to "Ada",
